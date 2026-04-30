@@ -1,7 +1,7 @@
 import speech_recognition as sr
 import webbrowser
 import pyttsx3
-
+import musicLibrary
 
 recognizer = sr.Recognizer()
 # engine = pyttsx3.init()
@@ -15,15 +15,18 @@ def speak(text):
 def processCommand(c):
     if "open google" in c.lower():
         webbrowser.open("https://google.com")
-    if "open youtube" in c.lower():
+    elif "open youtube" in c.lower():
         webbrowser.open("https://youtube.com")
-    if "open linkedin" in c.lower():
+    elif "open linkedin" in c.lower():
         webbrowser.open("https://linkedin.com")
-    if "open chatgpt" in c.lower():
+    elif "open chatgpt" in c.lower():
         webbrowser.open("https://facebook.com")
-    if "open github" in c.lower():
+    elif "open github" in c.lower():
         webbrowser.open("https://github.com")
-        
+    elif c.lower().startswith("play"):
+        song = c.lower().split(" ")[1]
+        link = musicLibrary.music[song]
+        webbrowser.open(link)
        
 
 if __name__ == "__main__":
