@@ -1,0 +1,6 @@
+speechrecognition - for recognizer,microphone and all
+pyaudio
+pyttsx3 - text to speech
+ollama - module to integrate ai module
+ollama3 or phi - models 
+webbrowser - module to open websites directly on webbrowser
