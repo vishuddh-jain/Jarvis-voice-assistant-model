@@ -2,9 +2,11 @@ import speech_recognition as sr
 import webbrowser
 import pyttsx3
 import musicLibrary
+from models.ai_assistant import ask_ai
 
 recognizer = sr.Recognizer()
-# engine = pyttsx3.init()
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
 
 def speak(text):
     engine = pyttsx3.init()
@@ -29,6 +31,13 @@ def processCommand(c):
         webbrowser.open(link)
     elif c.lower().startswith("fuck"):
         speak("thankyou buddy")
+
+    # AI fallback (MOST IMPORTANT)
+    else:
+        speak("Thinking...")
+        response = ask_ai(c)
+        print(response)
+        speak(response)
        
 
 if __name__ == "__main__":
@@ -42,7 +51,7 @@ if __name__ == "__main__":
         try:
             with sr.Microphone() as source:
                 print("Listening...")
-                audio = r.listen(source, timeout=2, phrase_time_limit=1)
+                audio = r.listen(source, timeout=5, phrase_time_limit=5)
             word = r.recognize_google(audio)
             if (word.lower() == "jarvis"):
                 speak("Yeah")
