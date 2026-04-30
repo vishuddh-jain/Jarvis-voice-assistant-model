@@ -4,16 +4,17 @@ import pyttsx3
 import musicLibrary
 from models.ai_assistant import ask_ai
 
+
 recognizer = sr.Recognizer()
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
+# engine = pyttsx3.init()
+
 
 def speak(text):
     engine = pyttsx3.init()
     engine.say(text)
     engine.runAndWait()
   
-
+  
 def processCommand(c):
     if "open google" in c.lower():
         webbrowser.open("https://google.com")
@@ -36,7 +37,7 @@ def processCommand(c):
     else:
         speak("Thinking...")
         response = ask_ai(c)
-        print(response)
+        print("Ai: ", response)
         speak(response)
        
 
